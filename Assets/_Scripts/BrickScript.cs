@@ -11,12 +11,12 @@ public class BrickScript : MonoBehaviour
 	public GameObject brickParticle;
 	public float dragScale=1.2f;
 
-	private Rigidbody rb;
+	//private Rigidbody rb;
 
 	private Vector2 beginPos;
 	private Vector2 endPos;
 
-	private bool dragging=false;
+	//private bool dragging=false;
 
 	private Vector2 delta;
 
@@ -27,7 +27,7 @@ public class BrickScript : MonoBehaviour
 
 
 	void Start(){
-		rb=GetComponent<Rigidbody>();
+		//rb=GetComponent<Rigidbody>();
 
 		leftBorder=GameManager.instance.leftBorder+transform.localScale.x/2f;
 		rightBorder=GameManager.instance.rightBorder-transform.localScale.x/2f;

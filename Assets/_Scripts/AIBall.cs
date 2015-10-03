@@ -42,6 +42,8 @@ public class AIBall : MonoBehaviour {
 
 				GameManager.instance.BallHalt(); //if ball halt player win
 
+				ballRunning=false;
+
 			}
 			oldPosition=transform.position;
 

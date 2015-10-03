@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject wallCube;
 	public GameObject sky; //to receive the ball
 	public GameObject paddle;
-	public GameObject ball;
+	public GameObject paddle2;
+	//public GameObject ball;
 
 	public GameObject brick; //Birck Prefab
 	public Transform bricksParent;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour {
 	public Text losePanelText;
 	public Button soundSwitch;
 
+	public float remainingTime=100f;
 
 	public string nextLevel;
 
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour {
 	private bool ballHalt;
 	private bool ballRunning;
 
-	private float runningTime=0f;
+
 	private int score=0;
 	private int highestScore=0;
 
@@ -124,8 +126,13 @@ public class GameManager : MonoBehaviour {
 
 	void SetPaddlePosition(){
 
-		paddle.transform.position=new Vector3(cameraPos.x,topBorder-0.5f,0f);
+		paddle.transform.position=new Vector3(cameraPos.x-2,topBorder-0.5f,0f);
 		Debug.Log("Set Padle Position");
+
+		if(paddle2){
+			paddle2.transform.position=new Vector3(cameraPos.x+2,topBorder-0.5f,0f);
+			Debug.Log("Set Padle2 Position");
+		}
 	}
 
 
@@ -136,7 +143,7 @@ public class GameManager : MonoBehaviour {
 		score=0;
 		highestScore=PlayerPrefs.GetInt("HighestScore",0);
 
-
+		Time.timeScale=1.0f;
 		
 		
 		//set interval of bricks
@@ -153,6 +160,10 @@ public class GameManager : MonoBehaviour {
 		if(loseCanvas){
 			loseCanvas.SetActive(false);
 		}
+		if(mainCanvas){
+			mainCanvas.SetActive(true);
+		}
+
 
 		if(bricksArrayName=="Rectangle, Triangle or Wave" ||bricksArrayName=="Rectangle"){
 			bricksNum=20;
@@ -164,6 +175,14 @@ public class GameManager : MonoBehaviour {
 		}else{ 
 
 
+		}
+
+		if(PlayerPrefs.GetInt("Mute",0)==1){ //sound mute
+			AudioListener.pause=true;
+			soundSwitch.GetComponentInChildren<Text>().text="Sound On";
+		}else{
+			AudioListener.pause=false;
+			soundSwitch.GetComponentInChildren<Text>().text="Sound Off";
 		}
 
 
@@ -186,17 +205,25 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(ballRunning){ //if ball start, stat to count time
-			runningTime += Time.deltaTime ;
+			remainingTime -= Time.deltaTime ;
 
-			timeText.text="TIME: "+(runningTime).ToString("0.0");
+			timeText.text="TIME: "+(remainingTime).ToString("0.0");
+
+			if(remainingTime<=0){ //time out, then win
+				remainingTime=0;
+				ballRunning=false;
+				EnermyTimeOut();
+			}
 		}
+
 	}
 	
 	
 	public void RedConquered(){
 
 		Lose ();
-		losePanelText.text="Mission Failde! \n Red Was Conquered";
+		losePanelText.text=string.Format("Red Was Conquered."
+										);
 
 	}
 
@@ -204,7 +231,8 @@ public class GameManager : MonoBehaviour {
 		bricksNum--; //one break down, breaks num --
 		if (bricksNum==0){
 			Lose ();
-			losePanelText.text="Mission Failde! \n Your Bricks Are Gone";
+			losePanelText.text=string.Format("Your Bricks Are Gone."
+			                                 );
 		}
 
 	}
@@ -213,16 +241,23 @@ public class GameManager : MonoBehaviour {
 
 		Win();
 		winPanelText.text=string.Format
-			("Hero! Ball is Halt, \n You win in {0} seconds\n with {1}  bricks. \nYour score is {2}. \nThe highest is {3}.",
-			 runningTime.ToString("0.0"),bricksNum, score, highestScore);
+			("Hero! Ball is Halt, \n You still have {0} seconds\nwith {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
+			 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
 
 
 	}
 	public void BallOut(){
 		Win();
 		winPanelText.text=string.Format
-			("Hero! Ball is Out, \n You win in {0} seconds\n with {1}  bricks. \nYour score is {2}. \nThe highest is {3}.",
-			 runningTime.ToString("0.0"),bricksNum, score, highestScore);
+			("Hero! Ball is Out, \n You still have {0} seconds\n with {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
+			 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
+
+	}
+	public void EnermyTimeOut(){
+		Win();
+		winPanelText.text=string.Format
+			("Hero! Colds Time Out, \n You still have {0} seconds\n with {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
+			 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
 
 	}
 	public void Win(){
@@ -249,11 +284,11 @@ public class GameManager : MonoBehaviour {
 	private int GetGameScore(){ //calculate win score  win!!!
 		int score=0;
 		if(ballHalt){
-			score+=20;
-		}else{ //ball out
 			score+=100;
+		}else{ //ball out
+			score+=20;
 		}
-		score+= 100-(int)(runningTime)+bricksNum;
+		score+= (int)(remainingTime)+bricksNum;
 		return score;
 
 	}
@@ -269,7 +304,9 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver(){
 
+
 		Time.timeScale=0.25f;
+
 		mainCanvas.SetActive(false);
 		ballRunning=false;
 		Invoke("Stop",1f);
@@ -284,7 +321,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	#region UI
 	public void Pause(){
 		Time.timeScale=0f;
 		GetComponent<AudioSource>().Pause();
@@ -306,9 +342,9 @@ public class GameManager : MonoBehaviour {
 		mainCanvas.SetActive(true);
 	}
 	
-
+	
 	public void PlayAgain(){
-
+		
 		Application.LoadLevel(Application.loadedLevel);
 		Time.timeScale=1f;
 	}
@@ -319,40 +355,43 @@ public class GameManager : MonoBehaviour {
 	public void NextLevel(){
 		Application.LoadLevel(nextLevel);
 		Time.timeScale=1f;
+		winCanvas.SetActive(false);
 	}
-
+	
+	public void ExitLevelToMenu(){
+		
+		Application.LoadLevel("Menu");
+	}
+	
+	
 	public void ExitGame(){
-#if UNITY_EDITOR
-
+		#if UNITY_EDITOR
+		
 		UnityEditor.EditorApplication.isPlaying = false;
-#else
-
+		#else
+		
 		Application.Quit();
-#endif
+		#endif
 	}
-
+	
 	public void Help(){
-
+		
 		Application.OpenURL("https://tim.bai.uno/ptr.htm");
 	}
-
+	
+	
 	public void SoundSwitch(){
+		
 		if(AudioListener.pause==true){
 			AudioListener.pause=false;
 			soundSwitch.GetComponentInChildren<Text>().text="Sound Off";
+			PlayerPrefs.SetInt("Mute",0);
 		}else{
 			AudioListener.pause=true;
 			soundSwitch.GetComponentInChildren<Text>().text="Sound On";
+			PlayerPrefs.SetInt("Mute",1);
 		}
-
+		PlayerPrefs.Save();
 	}
 
-//	public void SoundOn(){
-//		AudioListener.pause=false;
-//
-//		soundOn.enabled=false;
-//		soundOff.enabled=true;
-//	}
-
-	#endregion
 }

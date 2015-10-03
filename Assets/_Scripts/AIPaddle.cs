@@ -7,7 +7,8 @@ public class AIPaddle : MonoBehaviour {
 
 	#region Properties
 	public GameObject ball;
-	public float paddleSpeed=0.2f;
+	public float paddleSpeed=7f;
+	public float aiSmart=0f; //if it is 1, then the offset between 2 centers of paddle and ball will gone
 
 
 
@@ -81,16 +82,16 @@ public class AIPaddle : MonoBehaviour {
 			
 			
 			if(ballDown){
-				//ball up
+				//ball down
 				if(MakeChoice(60)){//60 percents follow the ball position x
 					PaddleMove (GetPaddleVector3(ball.transform.position.x));
 					
 				}
 				//else do nothing, the paddle stay
 				
-			}else{ //ball down
-				if(MakeChoice(90)){//98 percents
-					float t=(transform.position-ball.transform.position).y/ballVelocity.y;
+			}else{ //ball up
+				if(MakeChoice(90)){//90 percents
+					float t=((transform.position-ball.transform.position).y-aiSmart)/ballVelocity.y;
 					float aimX=ball.transform.position.x+t*ballVelocity.x;
 					
 					PaddleMove (GetPaddleVector3(aimX));
