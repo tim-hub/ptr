@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/Menu.unity
   - enabled: 1
     path: Assets/_Scenes/Normal.unity
+  - enabled: 1
+    path: Assets/_Scenes/Continue.unity

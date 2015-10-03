@@ -73,7 +73,7 @@ public class MenuUIController : MonoBehaviour {
 
 	public void More(){
 
-		Application.OpenURL("https://tim.bai.uno/ptr.htm");
+		Application.OpenURL("https://tim.bai.uno/ptr");
 	}
 
 	public void Continue(){
@@ -89,5 +89,13 @@ public class MenuUIController : MonoBehaviour {
 		creditsCanvas.SetActive(true);
 	}
 
-
+	public void ExitGame(){
+		#if UNITY_EDITOR
+		
+		UnityEditor.EditorApplication.isPlaying = false;
+		#else
+		
+		Application.Quit();
+		#endif
+	}
 }

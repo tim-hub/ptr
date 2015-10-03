@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour {
 	//some bools
 	private bool ballHalt;
 	private bool ballRunning;
+	private bool notLose=true;
 
 
 	private int score=0;
@@ -273,10 +274,15 @@ public class GameManager : MonoBehaviour {
 
 	}
 	public void Lose(){
-		GetComponents<AudioSource>()[2].Play(); //the third one, game over effect
-		GameOver();
-		if(loseCanvas){
-			loseCanvas.SetActive(true);
+		if(notLose){ //use this if to avoid double lose
+
+
+			GetComponents<AudioSource>()[2].Play(); //the third one, game over effect
+			GameOver();
+			if(loseCanvas){
+				loseCanvas.SetActive(true);
+			}
+			notLose=false;
 		}
 
 	}
@@ -376,7 +382,7 @@ public class GameManager : MonoBehaviour {
 	
 	public void Help(){
 		
-		Application.OpenURL("https://tim.bai.uno/ptr.htm");
+		Application.OpenURL("https://tim.bai.uno/ptr");
 	}
 	
 	
