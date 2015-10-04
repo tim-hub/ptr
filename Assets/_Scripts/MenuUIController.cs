@@ -13,6 +13,23 @@ public class MenuUIController : MonoBehaviour {
 	public GameObject howToCanvas;
 	public GameObject creditsCanvas;
 
+	public GameObject firstStartCanvas;
+
+	void Awake(){
+		if(PlayerPrefs.GetInt("Previously",0)==0){
+			menuCanvas.SetActive(false);
+			firstStartCanvas.SetActive(true);
+
+
+		}else{
+			firstStartCanvas.SetActive(false);
+			menuCanvas.SetActive(true);
+		}
+
+
+
+	}
+
 
 
 	// Use this for initialization
@@ -73,7 +90,7 @@ public class MenuUIController : MonoBehaviour {
 
 	public void More(){
 
-		Application.OpenURL("https://tim.bai.uno/ptr");
+		Application.OpenURL("http://geekgame.bai.uno/ptr");
 	}
 
 	public void Continue(){
@@ -98,4 +115,12 @@ public class MenuUIController : MonoBehaviour {
 		Application.Quit();
 		#endif
 	}
+
+	public void PreviousContinue(){
+		firstStartCanvas.SetActive(false);
+		PlayerPrefs.SetInt("Previously",1);
+		PlayerPrefs.Save();
+		menuCanvas.SetActive(true);
+	}
+	
 }

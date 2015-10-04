@@ -5,7 +5,7 @@ using System.Collections;
 public class ContinueSceneController : MonoBehaviour {
 
 	public void MoreBut(){
-		Application.OpenURL("https://tim.bai.uno/ptr");
+		Application.OpenURL("http://geekgame.bai.uno/ptr");
 	}
 
 	public void Exit(){

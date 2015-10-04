@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
 	//some bools
 	private bool ballHalt;
 	private bool ballRunning;
-	private bool notLose=true;
+	private bool gaming=true;
 
 
 	private int score=0;
@@ -221,47 +221,64 @@ public class GameManager : MonoBehaviour {
 	
 	
 	public void RedConquered(){
-
-		Lose ();
-		losePanelText.text=string.Format("Red Was Conquered."
-										);
+		if(gaming){
+			Lose ();
+			losePanelText.text=string.Format("Red Was Conquered."
+											);
+			gaming =false;
+		}
 
 	}
 
 	public void BrickBreak(){
-		bricksNum--; //one break down, breaks num --
-		if (bricksNum==0){
-			Lose ();
-			losePanelText.text=string.Format("Your Bricks Are Gone."
-			                                 );
-		}
+
+			bricksNum--; //one break down, breaks num --
+			if (bricksNum==0){
+				if(gaming){
+					Lose ();
+					losePanelText.text=string.Format("Your Bricks Are Gone."
+					                                 );
+				gaming =false;
+				}
+			}
+
 
 	}
 	public void BallHalt(){
-		ballHalt=true;
+		if(gaming){
+			ballHalt=true;
 
-		Win();
-		winPanelText.text=string.Format
-			("Hero! Ball is Halt, \n You still have {0} seconds\nwith {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
-			 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
-
+			Win();
+			winPanelText.text=string.Format
+				("Hero! Ball is Halt, \n You still have {0} seconds\nwith {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
+				 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
+			gaming =false;
+		}
 
 	}
 	public void BallOut(){
-		Win();
-		winPanelText.text=string.Format
-			("Hero! Ball is Out, \n You still have {0} seconds\n with {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
-			 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
+		if(gaming){
+			Win();
+			winPanelText.text=string.Format
+				("Hero! Ball is Out, \n You still have {0} seconds\n with {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
+				 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
+			gaming =false;
+		}
 
 	}
 	public void EnermyTimeOut(){
-		Win();
-		winPanelText.text=string.Format
-			("Hero! Colds Time Out, \n You still have {0} seconds\n with {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
-			 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
+
+		if(gaming){
+			Win();
+			winPanelText.text=string.Format
+				("Hero! Colds Time Out, \n You still have {0} seconds\n with {1}  bricks. \nYour score is {2}. \nYour highest is {3}.",
+				 remainingTime.ToString("0.0"),bricksNum, score, highestScore);
+			gaming =false;
+		}
 
 	}
 	public void Win(){
+
 		//GetComponents<AudioSource>()[0].Pause();
 		GetComponents<AudioSource>()[1].Play();
 		score=GetGameScore();
@@ -271,19 +288,18 @@ public class GameManager : MonoBehaviour {
 			winCanvas.SetActive(true);
 		}
 
-
 	}
 	public void Lose(){
-		if(notLose){ //use this if to avoid double lose
 
 
-			GetComponents<AudioSource>()[2].Play(); //the third one, game over effect
-			GameOver();
-			if(loseCanvas){
-				loseCanvas.SetActive(true);
-			}
-			notLose=false;
+
+		GetComponents<AudioSource>()[2].Play(); //the third one, game over effect
+		GameOver();
+		if(loseCanvas){
+			loseCanvas.SetActive(true);
 		}
+
+
 
 	}
 
@@ -382,7 +398,7 @@ public class GameManager : MonoBehaviour {
 	
 	public void Help(){
 		
-		Application.OpenURL("https://tim.bai.uno/ptr");
+		Application.OpenURL("http://geekgame.bai.uno/ptr");
 	}
 	
 	
