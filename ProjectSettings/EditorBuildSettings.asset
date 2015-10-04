@@ -15,3 +15,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Normal.unity
   - enabled: 1
     path: Assets/_Scenes/Continue.unity
+  - enabled: 1
+    path: Assets/_Scenes/NormalSplash.unity
+  - enabled: 1
+    path: Assets/_Scenes/CrazySplash.unity

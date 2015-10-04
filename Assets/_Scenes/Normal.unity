@@ -986,6 +986,10 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 185
       objectReference: {fileID: 0}
+    - target: {fileID: 147756, guid: b034393c561b34606ab47e1aa75624de, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b034393c561b34606ab47e1aa75624de, type: 2}
   m_IsPrefabParent: 0
@@ -1408,7 +1412,7 @@ MonoBehaviour:
   losePanelText: {fileID: 1646979601}
   soundSwitch: {fileID: 624867992}
   remainingTime: 60
-  nextLevel: Crazy
+  nextLevel: CrazySplash
   leftBorder: 0
   rightBorder: 0
   topBorder: 0

@@ -61,12 +61,12 @@ public class MenuUIController : MonoBehaviour {
 
 	public void StartLevel1(){
 
-		Application.LoadLevel("Normal");
+		Application.LoadLevel("NormalSplash");
 	}
 
 	public void StartLevel2(){
 		
-		Application.LoadLevel("Crazy");
+		Application.LoadLevel("CrazySplash");
 	}
 
 	public void SoundSwitch(){

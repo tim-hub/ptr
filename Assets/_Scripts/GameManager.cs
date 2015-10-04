@@ -144,8 +144,9 @@ public class GameManager : MonoBehaviour {
 		score=0;
 		highestScore=PlayerPrefs.GetInt("HighestScore",0);
 
-		Time.timeScale=1.0f;
-		
+		Time.timeScale=1.0f; //run game with normal timescale eveny startup
+
+		bool gaming=true;
 		
 		//set interval of bricks
 		if (rightBorder-leftBorder>=22){
