@@ -224,8 +224,7 @@ public class GameManager : MonoBehaviour {
 	public void RedConquered(){
 		if(gaming){
 			Lose ();
-			losePanelText.text=string.Format("Red Was Conquered."
-											);
+			losePanelText.text=string.Format("Red Was Conquered.");
 			gaming =false;
 		}
 
@@ -237,8 +236,7 @@ public class GameManager : MonoBehaviour {
 			if (bricksNum==0){
 				if(gaming){
 					Lose ();
-					losePanelText.text=string.Format("Your Bricks Are Gone."
-					                                 );
+					losePanelText.text=string.Format("Your Bricks Are Gone.");
 				gaming =false;
 				}
 			}
@@ -295,8 +293,6 @@ public class GameManager : MonoBehaviour {
 
 	public void Lose(){
 
-
-
 		GetComponents<AudioSource>()[2].Play(); //the third one, game over effect
 		GameOver();
 		if(loseCanvas){
@@ -329,13 +325,16 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver(){
-
-
 		Time.timeScale=0.25f;
 
 		mainCanvas.SetActive(false);
 		ballRunning=false;
-		Invoke("Stop",1f);
+
+		if(paddle2){ //if 2 paddles. stop immediately
+			Invoke("Stop",0f);
+		}else{
+			Invoke("Stop",1f);
+		}
 	}
 
 	public void Stop(){

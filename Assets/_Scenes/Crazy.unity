@@ -1415,7 +1415,6 @@ MonoBehaviour:
   bricksParent: {fileID: 54658085}
   bricksArrayName: Rectangle, Triangle or Wave
   winCanvas: {fileID: 1290528592}
-  winEndCanvas: {fileID: 0}
   loseCanvas: {fileID: 2056189092}
   mainCanvas: {fileID: 253648015}
   pauseMenu: {fileID: 1854861144}
