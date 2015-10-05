@@ -15,7 +15,7 @@ public class SplashController : MonoBehaviour {
 			NextLevel();
 		}
 #elif UNITY_ANDROID
-		if(Input.TouchCount>=1){
+		if(Input.touchCount>=1){
 			NextLevel();
 		}
 

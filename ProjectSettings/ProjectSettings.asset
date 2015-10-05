@@ -72,13 +72,13 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: uno.bai.geekgame
-  bundleVersion: 1.01
+  bundleVersion: 2
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   productGUID: 5f0afe26017c9441f94427c5bd15d579
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
