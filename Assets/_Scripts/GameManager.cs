@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour {
 
 		Time.timeScale=1.0f; //run game with normal timescale eveny startup
 
-		bool gaming=true;
+		gaming=true;
 		
 		//set interval of bricks
 		if (rightBorder-leftBorder>=22){
@@ -290,6 +290,9 @@ public class GameManager : MonoBehaviour {
 		}
 
 	}
+
+
+
 	public void Lose(){
 
 
@@ -376,11 +379,16 @@ public class GameManager : MonoBehaviour {
 		Time.timeScale=1f;
 	}
 	public void NextLevel(){
-		Application.LoadLevel(nextLevel);
-		Time.timeScale=1f;
+
+		Debug.Log("Next Level Button Pressed"+nextLevel);
+
 		winCanvas.SetActive(false);
+
+		Time.timeScale=1f;
+		Application.LoadLevel(nextLevel);
 	}
-	
+
+
 	public void ExitLevelToMenu(){
 		
 		Application.LoadLevel("Menu");

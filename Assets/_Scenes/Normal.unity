@@ -990,7 +990,8 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11459790, guid: b034393c561b34606ab47e1aa75624de, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b034393c561b34606ab47e1aa75624de, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &509343506
@@ -1404,6 +1405,7 @@ MonoBehaviour:
   bricksParent: {fileID: 54658085}
   bricksArrayName: Rectangle, Triangle or Wave
   winCanvas: {fileID: 1290528592}
+  winEndCanvas: {fileID: 1259889872}
   loseCanvas: {fileID: 2056189092}
   mainCanvas: {fileID: 253648015}
   pauseMenu: {fileID: 1854861144}
@@ -2530,6 +2532,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 873664978}
   m_RootOrder: 0
+--- !u!1001 &1259889871
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468342, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 122284, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_Name
+      value: WinEndCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 122284, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &1259889872 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 122284, guid: de9cd47612fac4c04a3a1f88b949f1ea, type: 2}
+  m_PrefabInternal: {fileID: 1259889871}
 --- !u!1 &1265248215
 GameObject:
   m_ObjectHideFlags: 0

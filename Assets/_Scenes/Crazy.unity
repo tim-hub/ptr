@@ -1256,7 +1256,7 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 90a1dbe0a10ff4f879a517fbeade92c9, type: 2}
+  - {fileID: 2100000, guid: b1527893d2f7447da96cf701ed8b413f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1415,6 +1415,7 @@ MonoBehaviour:
   bricksParent: {fileID: 54658085}
   bricksArrayName: Rectangle, Triangle or Wave
   winCanvas: {fileID: 1290528592}
+  winEndCanvas: {fileID: 0}
   loseCanvas: {fileID: 2056189092}
   mainCanvas: {fileID: 253648015}
   pauseMenu: {fileID: 1854861144}
@@ -2730,7 +2731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1290528593
 MonoBehaviour:
   m_ObjectHideFlags: 0
